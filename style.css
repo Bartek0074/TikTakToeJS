@@ -1,0 +1,103 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cell-size: 10vw;
+    --mark-size: 9vw;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: white;
+    border: 1px solid black;
+}
+
+.cell .mark {
+    font-size: var(--mark-size);
+    color: black;
+}
+
+.cell .hover {
+    font-size: var(--mark-size);
+    color: gray;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: none;
+}
+
+.cell:first-child,
+.cell:nth-child(4),
+.cell:nth-child(7){
+    border-left: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9){
+    border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9){
+    border-bottom: none;
+}
+
+.winning-message {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000070;
+}
+
+.winning-message p {
+    font-size: 5rem;
+    color: white;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    margin-top: 1rem;
+    padding: .5em 1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color .3s, color .3s;
+}
+
+.winning-message button:hover {
+    background-color: #000;
+    color: white;
+}
+
+.winning-message.show {
+    display: flex;
+}
