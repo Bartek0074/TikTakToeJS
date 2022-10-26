@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const winningMessageTxt = document.querySelector('[data-winning-message-text]')
 const winningMessage = document.querySelector('.winning-message');
+const restartBtn = document.querySelector('.restartBtn');
 
 let crossTurn = true;
 
@@ -95,8 +96,21 @@ const cellClick = e => {
     }
 }
 
+const restartGame = () => {
+    cells.forEach(cell => {
+        crossTurn = true;
+        cell.classList.remove(circleClass);
+        cell.classList.remove(crossClass);
+        cell.innerHTML = '';
+        winningMessage.classList.remove('show');
+        cells.forEach(cell => cell.addEventListener('click', e => cellClick(e), { once: true }));
+    })
+}
+
 cells.forEach(cell => cell.addEventListener('mouseenter', e => cellMouseEnter(e)));
 
 cells.forEach(cell => cell.addEventListener('mouseleave', e => cellMouseLeave(e)));
 
 cells.forEach(cell => cell.addEventListener('click', e => cellClick(e), { once: true }));
+
+restartBtn.addEventListener('click', restartGame)
