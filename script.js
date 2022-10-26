@@ -58,12 +58,18 @@ const checkWin = (currentClass) => {
     })
 }
 
+const checkDraw = () => {
+    return [...cells].every(cell => {
+        return cell.classList.contains(circleClass) || cell.classList.contains(crossClass)
+    })
+}
+
 const endGame = (draw) => {
     if (draw) {
-
+        winningMessageTxt.innerText = "It's a draw";
     }
     else {
-        winningMessageTxt.innerText = `${crossTurn ? "X's wins!" : "O's wins!"}`
+        winningMessageTxt.innerText = `${crossTurn ? "X's wins!" : "O's wins!"}`;
     }
     winningMessage.classList.add('show');
 }
@@ -81,8 +87,12 @@ const cellClick = e => {
     if(checkWin(currentClass)) {
         endGame(false)
     }
-
-    swapTurns();
+    else if (checkDraw()) {
+        endGame(true)
+    }
+    else {
+        swapTurns()
+    }
 }
 
 cells.forEach(cell => cell.addEventListener('mouseenter', e => cellMouseEnter(e)));
