@@ -103,7 +103,7 @@ const restartGame = () => {
         cell.classList.remove(crossClass);
         cell.innerHTML = '';
         winningMessage.classList.remove('show');
-        cells.forEach(cell => cell.addEventListener('click', e => cellClick(e), { once: true }));
+        cell.addEventListener('click', e => cellClick(e), { once: true })
     })
 }
 
@@ -113,4 +113,4 @@ cells.forEach(cell => cell.addEventListener('mouseleave', e => cellMouseLeave(e)
 
 cells.forEach(cell => cell.addEventListener('click', e => cellClick(e), { once: true }));
 
-restartBtn.addEventListener('click', restartGame)
+restartBtn.addEventListener('click', restartGame);
